@@ -4,14 +4,43 @@ import 'package:project/data/strings.dart';
 import 'package:project/formul_item.dart';
 import 'package:project/model/formul.dart';
 
-class GercekFormulListesi extends StatelessWidget {
-    late List<Formul> tumFormuller;
+class GercekFormulListesi extends StatefulWidget {
+  late List<Formul> tumFormuller;
    GercekFormulListesi()
    {
      tumFormuller =veriKaynaginiHazirla();
     print(tumFormuller);
    }
+   List<Formul> veriKaynaginiHazirla() {
+     List<Formul> gecici =[];
+    for(int i=0;i<12;i++)
+    {
+      var formulAdi=Strings.FORMUL_ADLARI[i];
+      var formulKucukResim=Strings.FORMUL_KUCUK_RESIM[i];
+      Formul eklenecekFormul =Formul(formulAdi,formulKucukResim);
+      gecici.add((eklenecekFormul));
+    }
+    return gecici;
+  }
+  
+  @override
+  State<GercekFormulListesi> createState() => _GercekFormulListesiState();
+}
 
+class _GercekFormulListesiState extends State<GercekFormulListesi> {
+  
+  List<Formul> veriKaynaginiHazirla() {
+     List<Formul> gecici =[];
+    for(int i=0;i<12;i++)
+    {
+      var formulAdi=Strings.FORMUL_ADLARI[i];
+      var formulKucukResim=Strings.FORMUL_KUCUK_RESIM[i];
+      Formul eklenecekFormul =Formul(formulAdi,formulKucukResim);
+      gecici.add((eklenecekFormul));
+    }
+    return gecici;
+  }
+  int secilenMenuItem=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +71,7 @@ class GercekFormulListesi extends StatelessWidget {
                         ),
                       ]),
             ],
-            expandedHeight: 250,
+            expandedHeight: 220,
             pinned: true,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -68,12 +97,13 @@ class GercekFormulListesi extends StatelessWidget {
            padding: EdgeInsets.all(8),
            sliver: SliverGrid(
              delegate: SliverChildBuilderDelegate(
-               _dinamikElemanUretenFonksiyon,childCount:tumFormuller.length
+               _dinamikElemanUretenFonksiyon,childCount:widget.tumFormuller.length
              ),
              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                crossAxisCount: 2,
                mainAxisSpacing: 25,
-               crossAxisSpacing: 25
+               crossAxisSpacing: 25,
+               mainAxisExtent: 170
                )),
          )
   
@@ -95,24 +125,43 @@ class GercekFormulListesi extends StatelessWidget {
             )
             */
         ],
-      )
+      ),
+      // bottomNavigationBar:bottomnavMenu(),
       );
   
   }
-
-  List<Formul> veriKaynaginiHazirla() {
-     List<Formul> gecici =[];
-    for(int i=0;i<12;i++)
+/*
+BottomNavigationBar bottomnavMenu() {
+    return BottomNavigationBar(items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label:"Anasayfa",
+        backgroundColor: Color.fromRGBO(26, 55, 77, 1)),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.search),
+        label:"Arama",
+        backgroundColor: Color.fromRGBO(64, 104, 130, 1)),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.add),
+        label:"Ekleme",
+        backgroundColor:  Color.fromRGBO(105, 152, 171, 1)),
+        
+    ],
+    type: BottomNavigationBarType.shifting,
+    currentIndex:secilenMenuItem,
+    onTap: (index)
     {
-      var formulAdi=Strings.BURC_ADLARI[i];
-      var formulKucukResim=Strings.FORMUL_KUCUK_RESIM[i];
-      Formul eklenecekFormul =Formul(formulAdi,formulKucukResim);
-      gecici.add((eklenecekFormul));
-    }
-    return gecici;
+      setState(() {
+        secilenMenuItem=index;
+      });
+    },
+    
+    );
   }
+*/ 
 
+ 
   Widget? _dinamikElemanUretenFonksiyon(BuildContext context, int index) {
-    return FormulItem(listelenenFormul: tumFormuller[index]);
+    return FormulItem(listelenenFormul: widget.tumFormuller[index]);
   }
 }

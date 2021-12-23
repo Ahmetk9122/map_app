@@ -43,7 +43,7 @@ class formul_Listeleri extends StatelessWidget {
      List<Formul> gecici =[];
     for(int i=0;i<12;i++)
     {
-      var formulAdi=Strings.BURC_ADLARI[i];
+      var formulAdi=Strings.FORMUL_ADLARI[i];
       var formulKucukResim=Strings.FORMUL_KUCUK_RESIM[i];
       Formul eklenecekFormul =Formul(formulAdi,formulKucukResim);
       gecici.add((eklenecekFormul));

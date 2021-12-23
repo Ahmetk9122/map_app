@@ -2,9 +2,9 @@ class Strings {
   Strings() {
     print('Olusturuldu');
   }
-  static const String APP_NAME = "Burç Rehberi";
+  static const String APP_NAME = "MAP APP";
 
-  static const List<String> BURC_ADLARI = [
+  static const List<String> FORMUL_ADLARI = [
     "A Formülü",
     "B Formülü",
     "C Formülü",

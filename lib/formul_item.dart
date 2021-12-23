@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/detay/a_formul_detay.dart';
 import 'package:project/constants/app_constants.dart';
-import 'package:project/gercek_formul_listesi.dart';
+import 'package:project/Pages/gercek_formul_listesi.dart';
 import 'package:project/model/formul.dart';
 
 class FormulItem extends StatelessWidget {
@@ -19,7 +20,24 @@ class FormulItem extends StatelessWidget {
     InkWell(
       onTap: ()
       {
-        print("basılıd");
+      switch(listelenenFormul.formulAdi) { 
+   case "A Formülü": { 
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>a_Formulu()));
+   } 
+   break;
+    /*
+    Herbir Formül için bunu çoğalt.
+     case "A Formülü": { 
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>a_Formulu()));
+   } 
+   break;
+    
+    */
+   default: { 
+     print("olmadı ama yaparsın sen ");  
+   }
+   break; 
+} 
       },
       child: Container(
                         decoration: BoxDecoration(
@@ -37,14 +55,13 @@ class FormulItem extends StatelessWidget {
                                  // green as background color
                             ),
                         width: 150,
-                        height: 165,
+                        height: 150,
                         child: Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: [
-                                  Text(listelenenFormul.formulAdi,style: Sabitler.CardStyle,),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 15.0),
                                     child: Padding(
@@ -63,11 +80,21 @@ class FormulItem extends StatelessWidget {
                                     height: 4,
                                     color: Colors.black,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8,left: 130.0),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                    ),
+                                  Row(
+                                    children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:35,top: 8),
+                                          child: Text(listelenenFormul.formulAdi,style: Sabitler.CardStyle,),
+                                        ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 8,left: 30.0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.grey.shade800,
+                                          
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   ],
                               ),
