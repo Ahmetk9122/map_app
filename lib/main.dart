@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:project/Pages/anasayfa.dart';
 import 'package:project/Pages/gercek_formul_listesi.dart';
@@ -51,8 +52,34 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer:DrawerMenu(),
       body:tumsayfalar[secilenMenuItem],
-      bottomNavigationBar:bottomnavMenu(),
+      bottomNavigationBar:curvednav(),
+    
     );
+  }
+
+  CurvedNavigationBar curvednav() {
+    return CurvedNavigationBar(
+      index: secilenMenuItem,
+      height: 50,
+      color: Colors.white ,
+      buttonBackgroundColor: Color.fromRGBO(221, 221, 221, 1),
+      backgroundColor:Colors.teal.shade900.withOpacity(0.9),
+      /*Color.fromRGBO(20, 104, 130, 1)*/
+      items:
+  [
+    Icon(Icons.home,size:30),
+    Icon(Icons.map,size:30),
+    Icon(Icons.exit_to_app,size:30),
+  ],
+    onTap: (index)
+    {
+      setState(() {
+        secilenMenuItem =index;
+      });
+    },
+    animationCurve: Curves.easeInBack,
+    animationDuration: const Duration(milliseconds:150),
+  );
   }
 
   BottomNavigationBar bottomnavMenu() {
@@ -81,5 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
     },
     
     );
-  }
+    
+    
+    
+  } 
+  
 }
