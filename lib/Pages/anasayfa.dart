@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:project/constants/app_constants.dart';
 import 'package:project/data/strings.dart';
-import 'package:project/driver_layout.dart';
 import 'package:project/formul_item.dart';
 import 'package:project/model/formul.dart';
 
-class GercekFormulListesi extends StatefulWidget {
+class Anasayfa extends StatefulWidget {
   late List<Formul> tumFormuller;
-   GercekFormulListesi()
-   {
-     tumFormuller =veriKaynaginiHazirla();
+  Anasayfa()
+  {
+    tumFormuller =veriKaynaginiHazirla();
     print(tumFormuller);
    }
    List<Formul> veriKaynaginiHazirla() {
@@ -23,30 +22,15 @@ class GercekFormulListesi extends StatefulWidget {
     }
     return gecici;
   }
-  
+
   @override
-  State<GercekFormulListesi> createState() => _GercekFormulListesiState();
+  _AnasayfaState createState() => _AnasayfaState();
 }
 
-class _GercekFormulListesiState extends State<GercekFormulListesi> {
-  
-  List<Formul> veriKaynaginiHazirla() {
-     List<Formul> gecici =[];
-    for(int i=0;i<12;i++)
-    {
-      var formulAdi=Strings.FORMUL_ADLARI[i];
-      var formulKucukResim=Strings.FORMUL_KUCUK_RESIM[i];
-      Formul eklenecekFormul =Formul(formulAdi,formulKucukResim);
-      gecici.add((eklenecekFormul));
-    }
-    return gecici;
-  }
-  int secilenMenuItem=0;
+class _AnasayfaState extends State<Anasayfa> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: DrawerMenu(),
-          body: CustomScrollView(
+    return CustomScrollView(
         slivers: [
           SliverAppBar(
             actions: [
@@ -127,42 +111,9 @@ class _GercekFormulListesiState extends State<GercekFormulListesi> {
             )
             */
         ],
-      ),
-      // bottomNavigationBar:bottomnavMenu(),
       );
+  }
   
-  }
-/*
-BottomNavigationBar bottomnavMenu() {
-    return BottomNavigationBar(items: [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label:"Anasayfa",
-        backgroundColor: Color.fromRGBO(26, 55, 77, 1)),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label:"Arama",
-        backgroundColor: Color.fromRGBO(64, 104, 130, 1)),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.add),
-        label:"Ekleme",
-        backgroundColor:  Color.fromRGBO(105, 152, 171, 1)),
-        
-    ],
-    type: BottomNavigationBarType.shifting,
-    currentIndex:secilenMenuItem,
-    onTap: (index)
-    {
-      setState(() {
-        secilenMenuItem=index;
-      });
-    },
-    
-    );
-  }
-*/ 
-
- 
   Widget? _dinamikElemanUretenFonksiyon(BuildContext context, int index) {
     return FormulItem(listelenenFormul: widget.tumFormuller[index]);
   }

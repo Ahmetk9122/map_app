@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/detay/a_formul_detay.dart';
 import 'package:project/constants/app_constants.dart';
 import 'package:project/Pages/gercek_formul_listesi.dart';
+import 'package:project/detay/b_formulu.dart';
 import 'package:project/model/formul.dart';
 
 class FormulItem extends StatelessWidget {
@@ -25,6 +26,11 @@ class FormulItem extends StatelessWidget {
       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>a_Formulu()));
    } 
    break;
+    case "B Formülü": { 
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>bFormulu()));
+   } 
+   break;
+   
     /*
     Herbir Formül için bunu çoğalt.
      case "A Formülü": { 
